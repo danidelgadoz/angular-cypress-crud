@@ -20,7 +20,7 @@ const APP_ROUTES: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(APP_ROUTES, { useHash: true }),
+    RouterModule.forRoot(APP_ROUTES, { useHash: false }),
     SharedModule,
     BookModule
   ],
