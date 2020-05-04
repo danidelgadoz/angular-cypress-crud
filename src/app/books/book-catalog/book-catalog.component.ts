@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BookService } from '../book.service';
 import { Book } from '../book';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-book-catalog',
@@ -17,7 +18,8 @@ export class BookCatalogComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private bookService: BookService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.requestFindAllAPI();
   }
@@ -27,6 +29,7 @@ export class BookCatalogComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.bookFindAllApi$?.unsubscribe();
+    this.snackBar.dismiss();
   }
 
   onNavigateToCreateBookView(): void {
@@ -40,9 +43,14 @@ export class BookCatalogComponent implements OnInit, OnDestroy {
   private requestFindAllAPI(): void {
     this.bookFindAllApi$ = this.bookService
       .findAll()
-      .subscribe(books => {
-        this.books = books;
-      });
+      .subscribe(
+        (books) => {
+          this.books = books;
+        },
+        (error) => {
+          this.snackBar.open('Ups! Error loading books', 'OK', { duration: 5000 });
+        }
+      );
   }
 
 }

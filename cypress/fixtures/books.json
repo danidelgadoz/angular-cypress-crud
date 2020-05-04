@@ -1,0 +1,29 @@
+[
+  {
+    "favorite": true,
+    "_id": "5ea22fc60aec363b0cbbf409",
+    "title": "War and Peace",
+    "description": "Historical Fiction",
+    "author": "Lev Nikolayevich Tolstoy",
+    "__v": 0,
+    "posterImgPath": "https://i.picsum.photos/id/100/200/200.jpg"
+  },
+  {
+    "favorite": true,
+    "_id": "5ea3b631c595412c02507fa7",
+    "title": "Game of thrones",
+    "description": "About wars and dragons",
+    "author": "Robert W. Martin",
+    "__v": 0,
+    "posterImgPath": "https://i.picsum.photos/id/101/200/200.jpg"
+  },
+  {
+    "favorite": true,
+    "_id": "5ea65722b16f51038dd7132b",
+    "author": "qqq",
+    "description": "qqq",
+    "posterImgPath": "https://i.picsum.photos/id/400/200/200.jpg",
+    "title": "qqq",
+    "__v": 0
+  }
+]
