@@ -12,10 +12,10 @@ import { BookService } from '../book.service';
   styleUrls: ['./book-card.component.scss']
 })
 export class BookCardComponent implements OnInit, OnDestroy {
-  @Input() book: Book;
+  @Input() book!: Book;
   @Output() deleted = new EventEmitter<string>();
-  private bookPartialUpdateApi$: Subscription;
-  private bookDeleteApi$: Subscription;
+  private bookPartialUpdateApi$!: Subscription;
+  private bookDeleteApi$!: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,7 +38,7 @@ export class BookCardComponent implements OnInit, OnDestroy {
     this.bookPartialUpdateApi$ = this.bookService
       .partialUpdate(this.book._id, bookFavoriteState)
       .subscribe(({ favorite }) => {
-        this.book = {...this.book, favorite };
+        this.book = { ...this.book, favorite };
       });
   }
 

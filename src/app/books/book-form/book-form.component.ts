@@ -15,10 +15,10 @@ import { Book } from '../book';
 export class BookFormComponent implements OnInit, OnDestroy {
   bookForm: FormGroup;
   isEditFlowActive = false;
-  private bookCreateApi$: Subscription;
-  private bookFindByIdApi$: Subscription;
-  private bookUpdateApi$: Subscription;
-  private currentBookIdOnEdit: string;
+  private bookCreateApi$!: Subscription;
+  private bookFindByIdApi$!: Subscription;
+  private bookUpdateApi$!: Subscription;
+  private currentBookIdOnEdit!: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,7 +30,7 @@ export class BookFormComponent implements OnInit, OnDestroy {
     this.prepareCreateOrUpdateFlow();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     this.bookFindByIdApi$?.unsubscribe();
@@ -51,13 +51,13 @@ export class BookFormComponent implements OnInit, OnDestroy {
   }
 
   private prepareCreateOrUpdateFlow() {
-    const idFromUrlParam: string = this.activatedRoute.snapshot.params.id;
+    const idFromUrlParam: string = this.activatedRoute.snapshot.params['id'];
     if (idFromUrlParam) {
       this.isEditFlowActive = true;
       this.currentBookIdOnEdit = idFromUrlParam;
       this.requestFindByIdAPI(idFromUrlParam);
     } else {
-      this.bookForm.get('posterImgPath').setValue(this.bookService.getRamdomPosterImgPath());
+      this.bookForm.get('posterImgPath')?.setValue(this.bookService.getRamdomPosterImgPath());
     }
   }
 
@@ -87,7 +87,7 @@ export class BookFormComponent implements OnInit, OnDestroy {
         this.snackBar.open('Book created!', 'OK', { duration: 2000 });
         this.bookForm.reset();
         Object.keys(this.bookForm.controls).forEach(key => {
-          this.bookForm.get(key).setErrors(null);
+          this.bookForm.get(key)?.setErrors(null);
         });
       });
   }

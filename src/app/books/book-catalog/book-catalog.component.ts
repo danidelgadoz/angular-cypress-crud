@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class BookCatalogComponent implements OnInit, OnDestroy {
   books: Book[] = [];
-  private bookFindAllApi$: Subscription;
+  private bookFindAllApi$!: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
